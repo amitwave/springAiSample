@@ -1,6 +1,7 @@
 package com.example.web.api;
 
 import com.example.ai.aisample.AiSampleService;
+import com.example.model.ResponseModels;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,5 +35,10 @@ public class AiController {
     @GetMapping(value = "/generate/stream/mono")
     public Mono<String> generateAiResponseStreamMono(@RequestParam(value = "userInput", defaultValue = "Say Hello to me") String userInput) {
         return aiSampleService.generateAiResponseStreamMono(userInput);
+    }
+
+    @GetMapping(value = "/generate/structured")
+    public ResponseModels generateAiResponseStructured(@RequestParam(value = "userInput", defaultValue = "name 10 countries with their capital cities") String userInput) {
+        return aiSampleService.getAiResultByKeyAndValue(userInput);
     }
 }

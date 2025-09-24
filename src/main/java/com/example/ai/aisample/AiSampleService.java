@@ -1,4 +1,6 @@
 package com.example.ai.aisample;
+import com.example.model.ResponseModel;
+import com.example.model.ResponseModels;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.ChatClientResponse;
@@ -9,12 +11,14 @@ import org.springframework.ai.chat.metadata.Usage;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.model.MessageAggregator;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -53,6 +57,19 @@ public class AiSampleService {
                 .filter(text -> !text.isEmpty())                    // Filter out empty strings
                 .reduce("", String::concat);                         // Aggregate into single string
     }
+
+
+    public ResponseModels getAiResultByKeyAndValue(String input){
+        log.info(input);
+        UserMessage userMessage = new UserMessage(input);
+
+        SystemPromptTemplate systemPrompt = new SystemPromptTemplate("You are an information provider. Create Response as provided Entity with key and list of values for each key");
+
+        Prompt prompt = new Prompt(List.of(systemPrompt.createMessage(), userMessage));
+
+        return chatClient.prompt(prompt).call().entity(ResponseModels.class);
+    }
+
 
     private static String getString(ChatResponse chatResponse) {
         var generations = chatResponse.getResults();
