@@ -1,4 +1,4 @@
-# AI Service API (Spring AI + WebFlux)
+# AI Service API using Spring AI
 
 A minimal Spring Boot (WebFlux) sample that integrates a Large Language Model (LLM) via Spring AI. It demonstrates:
 - Direct responses from an AI model
@@ -454,5 +454,3 @@ spring:
 - Slow responses: verify model choice, prompt size, and network.
 - Streaming stalls: ensure client keeps the connection open and doesn’t buffer the entire response.
 
-
-ke, I can tailor this README to your exact package names, add a Docker section, or include OpenAPI annotations and examples.
