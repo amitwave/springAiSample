@@ -1,0 +1,12 @@
+spring:
+  ai:
+    chat:
+      model: openai
+    openai:
+      api-key: <API_KEY>
+# Set root log level
+logging:
+  file:
+    name: app.log
+  level:
+      root: INFO
