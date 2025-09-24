@@ -2,6 +2,7 @@ package com.example.web.api;
 
 import com.example.ai.aisample.AiSampleService;
 import com.example.model.ResponseModels;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/ai")
 @Slf4j
+@Tag(name = "AI Controller", description = "APIs for AI")
 public class AiController {
 
     @Autowired
