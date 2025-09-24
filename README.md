@@ -1,4 +1,4 @@
-# AI Service API (Spring WebFlux) — README
+# AI Service API (Spring AI) — README
 
 A lightweight reactive REST API that exposes AI-powered endpoints under the /ai path. The controller provides synchronous, streaming, and structured responses backed by a service layer.
 
