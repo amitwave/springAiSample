@@ -25,7 +25,6 @@ import java.util.Objects;
 @Slf4j
 public class AiSampleService {
 
-
     @Autowired
     private ChatClient chatClient;
 
