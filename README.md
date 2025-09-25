@@ -21,6 +21,7 @@ Prerequisites:
 - Maven
 - An AI provider key (use a placeholder in local configs)
 
+![img.png](img.png)
 1) Configure your AI provider credentials (examples below use placeholders):
 - Environment variables:
 ```shell script
@@ -420,7 +421,7 @@ spring:
       openai:
         api-key: ${OPENAI_API_KEY}
         base-url: ${OPENAI_BASE_URL:}
-  logging:
+logging:
     level:
       root: INFO
       your.package: DEBUG

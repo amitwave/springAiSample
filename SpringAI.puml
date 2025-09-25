@@ -1,0 +1,9 @@
+@startuml
+
+autonumber
+
+Client -> API: Send user input
+API -> LLM: Authentication Response
+LLM -> API: Response
+API -> Client: Response
+@enduml
