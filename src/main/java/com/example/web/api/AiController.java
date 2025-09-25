@@ -30,6 +30,12 @@ public class AiController {
         return aiSampleService.generateAiResponse(userInput);
     }
 
+    @GetMapping("/math")
+    public String generateAiResponseMath(@RequestParam(value = "userInput", defaultValue = "add 2 and 2") String userInput) {
+        log.info(userInput);
+        return aiSampleService.generateAiResponseMath(userInput);
+    }
+
     @GetMapping(value = "/generate/stream", produces = MediaType.APPLICATION_NDJSON_VALUE)
     public Flux<String> generateAiResponseStream(@RequestParam(value = "userInput", defaultValue = "Say Hello to me") String userInput) {
         return aiSampleService.generateAiResponseStream(userInput);

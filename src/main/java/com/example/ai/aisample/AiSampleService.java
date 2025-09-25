@@ -1,6 +1,7 @@
 package com.example.ai.aisample;
 import com.example.model.ResponseModel;
 import com.example.model.ResponseModels;
+import com.example.tool.MathTools;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.ChatClientResponse;
@@ -33,7 +34,8 @@ public class AiSampleService {
     @Autowired
     private OpenAiChatModel chatModel;
 
-    MessageAggregator messageAggregator = new MessageAggregator();
+    @Autowired
+    private MathTools mathTools;
 
     public Map<String,String> generateAiResponse(String message) {
         return Map.of("content", Objects.requireNonNull(this.chatClient.prompt().user(message).call().content()));
@@ -98,4 +100,10 @@ public class AiSampleService {
 
     }
 
+    public String generateAiResponseMath(String userInput) {
+        return this.chatClient.prompt()
+                .tools(mathTools)
+                .user(userInput)
+                .call().content();
+    }
 }

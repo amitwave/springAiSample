@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.tool.MathTools;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.context.annotation.Bean;
