@@ -1,5 +1,4 @@
 package com.example.ai.aisample;
-import com.example.model.ResponseModel;
 import com.example.model.ResponseModels;
 import com.example.tool.MathTools;
 import lombok.extern.slf4j.Slf4j;
@@ -89,7 +88,11 @@ public class AiSampleService {
                     RateLimit rateLimit = metadata.getRateLimit();
                     Usage usage = metadata.getUsage();
 
-                    log.info(message);
+                    log.info("Processing message: {}", message);
+                    log.info("Rate Limit - Requests: {}, Remaining: {}, Reset: {}",
+                            rateLimit.getRequests(), rateLimit.getRemaining(), rateLimit.getReset());
+                    log.info("Usage - Prompt Tokens: {}, Completion Tokens: {}, Total Tokens: {}",
+                            usage.getPromptTokens(), usage.getCompletionTokens(), usage.getTotalTokens());
                 })
                 // Map the Flux<ChatResponse> to Flux<String> to return only the content
                 .map(AiSampleService::getString);
