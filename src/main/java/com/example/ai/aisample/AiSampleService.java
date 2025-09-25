@@ -10,7 +10,6 @@ import org.springframework.ai.chat.metadata.ChatResponseMetadata;
 import org.springframework.ai.chat.metadata.RateLimit;
 import org.springframework.ai.chat.metadata.Usage;
 import org.springframework.ai.chat.model.ChatResponse;
-import org.springframework.ai.chat.model.MessageAggregator;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.ai.openai.OpenAiChatModel;
@@ -51,11 +50,9 @@ public class AiSampleService {
         return chatClient.prompt(prompt)
                 .stream()
                 .chatClientResponse()
-                .map(resp -> resp.chatResponse())                   // Get ChatResponse
+                .map(ChatClientResponse::chatResponse)                   // Get ChatResponse
                 .filter(Objects::nonNull)                           // Filter out null ChatResponses
-                .map(chatResponse -> {
-                    return getString(chatResponse);
-                })
+                .map(AiSampleService::getString)
                 .filter(text -> !text.isEmpty())                    // Filter out empty strings
                 .reduce("", String::concat);                         // Aggregate into single string
     }
@@ -75,10 +72,10 @@ public class AiSampleService {
 
     private static String getString(ChatResponse chatResponse) {
         var generations = chatResponse.getResults();
-        if (generations == null || generations.isEmpty() || generations.get(0).getOutput().getText() == null) {
+        if (generations.isEmpty() || generations.getFirst().getOutput().getText() == null) {
             return "";
         }
-        return generations.get(0).getOutput().getText();
+        return generations.getFirst().getOutput().getText();
     }
 
     public Flux<String> generateAiResponseStream(String message) {
