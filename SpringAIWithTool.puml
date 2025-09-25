@@ -1,0 +1,9 @@
+@startuml
+
+autonumber
+
+Client -> API: /math?userInput=add 2 and 2
+API -> LLM: Authentication Response
+LLM -> API: Response
+API -> Client: Response
+@enduml

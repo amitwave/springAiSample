@@ -36,15 +36,21 @@ public class AiSampleService {
     private MathTools mathTools;
 
     public Map<String,String> generateAiResponse(String message) {
-        return Map.of("content", Objects.requireNonNull(this.chatClient.prompt().user(message).call().content()));
+        log.info("Generating AI response for message: {}", message);
+        String response = this.chatClient.prompt().user(message).call().content();
+        log.info("Generated response: {}", response);
+        return Map.of("content", Objects.requireNonNull(response));
     }
 
     public Flux<ChatClientResponse> generateStreamChatResponse(String message) {
+        log.info("Starting stream chat response generation for message: {}", message);
         Prompt prompt = new Prompt(new UserMessage(message));
-        return this.chatClient.prompt(prompt).stream().chatClientResponse();
+        return this.chatClient.prompt(prompt).stream().chatClientResponse()
+                .doOnComplete(() -> log.info("Completed stream chat response generation"));
     }
 
     public Mono<String> generateAiResponseStreamMono(String message) {
+        log.info("Starting AI response stream mono for message: {}", message);
         Prompt prompt = new Prompt(new UserMessage(message));
         return chatClient.prompt(prompt)
                 .stream()
@@ -72,9 +78,12 @@ public class AiSampleService {
     private static String getString(ChatResponse chatResponse) {
         var generations = chatResponse.getResults();
         if (generations.isEmpty() || generations.getFirst().getOutput().getText() == null) {
+            log.info("No text generated from chat response");
             return "";
         }
-        return generations.getFirst().getOutput().getText();
+        String text = generations.getFirst().getOutput().getText();
+        log.info("Extracted text from chat response: {}", text);
+        return text;
     }
 
     public Flux<String> generateAiResponseStream(String message) {
@@ -88,9 +97,7 @@ public class AiSampleService {
                     RateLimit rateLimit = metadata.getRateLimit();
                     Usage usage = metadata.getUsage();
 
-                    log.info("Processing message: {}", message);
-                    log.info("Usage - Prompt Tokens: {}, Completion Tokens: {}, Total Tokens: {}",
-                            usage.getPromptTokens(), usage.getCompletionTokens(), usage.getTotalTokens());
+                    log.info(message);
                 })
                 // Map the Flux<ChatResponse> to Flux<String> to return only the content
                 .map(AiSampleService::getString);

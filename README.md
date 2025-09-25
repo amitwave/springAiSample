@@ -4,6 +4,7 @@ A minimal Spring Boot (WebFlux) sample that integrates a Large Language Model (L
 - Direct responses from an AI model
 - Token-by-token streaming responses
 - Structured outputs mapped to a custom model
+- Mathematical operations using AI-powered tools
 
 ## Tech Stack
 
@@ -369,7 +370,16 @@ import org.springframework.web.reactive.function.client.WebClient;
   public class AiClient {
       private final WebClient webClient = WebClient.create("http://localhost:8080");
 
-      public Mono<String> generate(String userInput) {
+    public Mono<String> math(String userInput) {
+      return webClient.get()
+              .uri(uriBuilder -> uriBuilder.path("/ai/math")
+                      .queryParam("userInput", userInput)
+                      .build())
+              .retrieve()
+              .bodyToMono(String.class);
+    }
+
+    public Mono<String> generate(String userInput) {
           return webClient.get()
               .uri(uriBuilder -> uriBuilder.path("/ai/generate")
                   .queryParam("userInput", userInput)
