@@ -5,6 +5,7 @@ import com.example.model.ResponseModels;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,12 +30,12 @@ public class AiController {
         return aiSampleService.generateAiResponse(userInput);
     }
 
-    @GetMapping(value = "/generate/stream")
+    @GetMapping(value = "/generate/stream", produces = MediaType.APPLICATION_NDJSON_VALUE)
     public Flux<String> generateAiResponseStream(@RequestParam(value = "userInput", defaultValue = "Say Hello to me") String userInput) {
         return aiSampleService.generateAiResponseStream(userInput);
     }
 
-    @GetMapping(value = "/generate/stream/mono")
+    @GetMapping(value = "/generate/stream/mono", produces = MediaType.APPLICATION_NDJSON_VALUE)
     public Mono<String> generateAiResponseStreamMono(@RequestParam(value = "userInput", defaultValue = "Say Hello to me") String userInput) {
         return aiSampleService.generateAiResponseStreamMono(userInput);
     }
