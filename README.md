@@ -23,7 +23,9 @@ Prerequisites:
 - An AI provider key (use a placeholder in local configs)
 
 ![img.png](img.png)
-1) Configure your AI provider credentials (examples below use placeholders):
+![img_1.png](img_1.png)
+
+1) Configure your AI provider credentials (the examples below use placeholders):
 - Environment variables:
 ```shell script
 export OPENAI_API_KEY=<your-openai-api-key>
