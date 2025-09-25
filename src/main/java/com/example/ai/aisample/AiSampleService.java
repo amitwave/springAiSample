@@ -89,8 +89,6 @@ public class AiSampleService {
                     Usage usage = metadata.getUsage();
 
                     log.info("Processing message: {}", message);
-                    log.info("Rate Limit - Requests: {}, Remaining: {}, Reset: {}",
-                            rateLimit.getRequests(), rateLimit.getRemaining(), rateLimit.getReset());
                     log.info("Usage - Prompt Tokens: {}, Completion Tokens: {}, Total Tokens: {}",
                             usage.getPromptTokens(), usage.getCompletionTokens(), usage.getTotalTokens());
                 })
