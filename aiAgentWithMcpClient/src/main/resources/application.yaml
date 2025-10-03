@@ -1,0 +1,32 @@
+spring:
+  ai:
+    chat:
+      model: openai
+    openai:
+      api-key: <API_KEY>
+    mcp:
+      client:
+        enabled: true
+        name: math-tool-server-client
+        version: 1.0.0
+        initialized: true
+        request-timeout: 20s
+        type: async
+        root-change-notification: true
+        sse:
+          connections:
+            server1:
+              url: http://localhost:8082
+
+
+# Set root log level
+logging:
+  file:
+    name: app.log
+  level:
+      root: INFO
+
+server:
+  port: 8081
+  servlet:
+    context-path: /
