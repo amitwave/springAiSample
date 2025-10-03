@@ -29,7 +29,7 @@
 	</developers>
 	<modules>
 		<module>mcpSample</module>
-		<module>aiAgent</module>
+		<module>aiAgentWithTool</module>
 		<module>aiAgentWithMcpClient</module>
 	</modules>
 
