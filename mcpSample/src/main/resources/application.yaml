@@ -1,0 +1,34 @@
+spring:
+  main:
+    banner-mode: off
+  logging:
+    pattern:
+      console:
+  ai:
+    mcp:
+      server:
+        name: math-tool-server
+        version: 1.0.0
+        type: SYNC
+        instructions: "This server provides mathematical tools and resources"
+        capabilities:
+          tool: true
+          resource: true
+          prompt: true
+          completion: true
+server:
+  port: 8082
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    org.springframework.ai: DEBUG
+    org.springframework.web: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
