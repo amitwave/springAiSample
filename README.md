@@ -1,15 +1,18 @@
 # AI Service API using Spring AI
 
-A minimal Spring Boot (WebFlux) sample that integrates a Large Language Model (LLM) via Spring AI. It demonstrates:
+A minimal Spring Boot sample that integrates a Large Language Model (LLM) via Spring AI. It demonstrates:
 - Direct responses from an AI model
 - Token-by-token streaming responses
 - Structured outputs mapped to a custom model
 - Mathematical operations using AI-powered tools
+- AI Agent with tools
+- AI Agent with MCP
+- MCP Server using Spring AI
 
 ## Tech Stack
 
 - Java 21
-- Spring Boot 3.x (WebFlux)
+- Spring Boot 3.x 
 - Spring AI (ChatClient + model provider)
 - Reactor (Flux, Mono)
 - OpenAPI/Swagger (optional)
@@ -23,7 +26,10 @@ Prerequisites:
 - An AI provider key (use a placeholder in local configs)
 
 ![img.png](img.png)
+
 ![img_1.png](img_1.png)
+
+![mcp.png](mcp.png)
 
 1) Configure your AI provider credentials (the examples below use placeholders):
 - Environment variables:
