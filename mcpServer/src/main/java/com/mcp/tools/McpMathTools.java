@@ -89,7 +89,7 @@ public class McpMathTools {
         return min;
     }
 
-  //  @Tool(description = "Finds maximum value among given numbers")
+    @Tool(description = "Finds maximum value among given numbers")
     public static double max(double... numbers) {
         if (numbers.length == 0) {
             log.error("Maximum operation attempted on empty array");
