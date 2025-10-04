@@ -450,7 +450,7 @@ logging:
 
 - Logs capture the incoming query text for traceability. Adjust log levels as needed.
 - If OpenAPI is enabled, typical endpoints are:
-  - Swagger UI: http://localhost:8080/swagger-ui/index.html
+  - Swagger UI: http://localhost:8080/swagger-ui/index.html - you need to add swagger dependencies
   - OpenAPI JSON: http://localhost:8080/v3/api-docs
 
 ## Testing
