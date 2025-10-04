@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class AiSampleApplication {
+public class AiSampleApplicationWithTools {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AiSampleApplication.class, args);
+		SpringApplication.run(AiSampleApplicationWithTools.class, args);
 	}
 
 }
